@@ -1,16 +1,20 @@
 $(document).ready(function() {
     //Add Header and footer
-    $('header').load("header.html");
     $('footer').load("footer.html");
+    $('header').load("header.html", function() {
+        setActiveMenu(window.location.pathname);
+    });
 
-    //Add loading content
-    const loadElement = `<div class="loading">
-        <div class="spinner-border" role="status">
-            <span class="sr-only text-white">Loading...</span>
-        </div>
-    </div>`;
-    document.body.appendChild(createElementFromHTML(loadElement));
+    //Create loading content
+    addLoadContent();
 });
+
+function setActiveMenu(currentPage) {
+    if (currentPage === '/') {
+        currentPage = '/index.html';
+    }
+    $("a[href='" + currentPage + "']").addClass('active');
+}
 
 function checkFavoriteTVShows() {
     $(".bt-favorite").each(function() {
@@ -49,6 +53,16 @@ function setFavorite(bt) {
         };
         localStorage.setItem(lsId, JSON.stringify(item));
     }
+}
+
+function addLoadContent() {
+    //Create loading element in the body
+    const loadElement = `<div class="loading">
+        <div class="spinner-border" role="status">
+            <span class="sr-only text-white">Loading...</span>
+        </div>
+    </div>`;
+    document.body.appendChild(createElementFromHTML(loadElement));
 }
 
 function startLoading() {
