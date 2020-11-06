@@ -1,0 +1,44 @@
+html {
+    box-sizing: content-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+main {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin:0 auto ;
+    padding-top: 50px;
+    
+}
+
+
+h1, h2 {
+    background: -webkit-linear-gradient(0deg, #90cea1, #01b4e4, #0d253f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page {
+    margin-top: 30px;
+}
+
+p {
+    font-size: 1.3rem;
+}
+
+
+.description p,
+.logo h1 {
+    font-weight: bold;
+}
+
+.logo {
+    margin-top: 100px;
+    margin-bottom: 0px;
+}
