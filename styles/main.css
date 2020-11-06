@@ -14,3 +14,47 @@ footer {
     background: gray;
     margin-top: auto;
 }
+
+.loading {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.95);
+    color: #fff;
+    border-color: #fff;
+}
+
+.loading .spinner-border {
+    position: absolute;
+    margin-left: -25px;
+    margin-top: -25px;
+    top: 50%;
+    left: 50%;
+}
+
+.card {
+    position: relative;
+}
+
+.bt-favorite {
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.bt-favorite:hover {
+    color: rgb(241, 53, 53);
+    transform: scale(1.2);
+}
+
+.favorited {
+    color: rgb(241, 53, 53);
+}
