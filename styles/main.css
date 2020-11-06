@@ -12,7 +12,7 @@ body {
 
 #tvimages div {
     display: inline-block;
-    max-width: 20%; 
+    max-width: 20%;
     height: 100%;
 }
 
@@ -22,11 +22,13 @@ div.inner-item img {
     padding: 0 6px;
     float: left;
     width: 20%;
-  }
-    
-  * {
+}
+
+* {
     box-sizing: border-box;
-  }
+}
+
+
 /*   
 .center-fit {
             max-width: 100%;
@@ -86,4 +88,20 @@ footer {
 
 .favorited {
     color: rgb(241, 53, 53);
+}
+
+.score {
+    position: absolute;
+    top: 60px;
+    right: 8px;
+    padding-top: 8px;
+    background-color: #000;
+    width: 34px;
+    height: 34px;
+    border-radius: 17px;
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
 }
