@@ -24,24 +24,6 @@ $(function() {
 
     
 
-
-    // const checkFavourite = (item) => {
-    //     // console.log(item.isbn);
-    //     const index = favouriteBooks.findIndex(e => e.isbn === item.isbn);
-    //     return (index < 0) ? false : true;
-    
-    // }
-
-
-
-//list_name
-// published_date
-// rank
-// primary_isbn10
-// title
-// author
-// description
-// book-image
 // Optional : amazon_product_url
 
 
@@ -58,12 +40,8 @@ function displayData(items) {
 
         items.forEach((shows) => {
             // const isFavourite = checkFavourite(books);
-            // const itemDiv = $('<div class="book-item"></div>').attr('id', books.isbn);
-            // const title = $('<h2></h2>').text(books.title);
-            // itemDiv.append(title);
-            // const rank = $('<h3></h3>').text(books.rank);
-            // itemDiv.append(rank);
-            // const icon = isFavourite ? $('<i class="fas fa-heart favourite"></i>') : $('<i class="fas fa-heart"></i>');
+            
+            
             // itemDiv.append(icon);
             // const author = $('<h4></h4>').text(`Author : ${books.author}`);
             // itemDiv.append(author);
@@ -71,13 +49,31 @@ function displayData(items) {
 
             const img = $('<img>').attr('src', 'https://image.tmdb.org/t/p/w500/'+shows.image)
             innerDiv.append(img);
+
+
+            
+            const itemDiv = $('<div class="overlay"></div>').attr('id', shows.id);
+
+            const title = $('<h2 class="text"></h2>').text(shows.name);
+            itemDiv.append(title);
+            const rank = $('<h3 class="text"></h3>').text(shows.rate);
+            itemDiv.append(rank);
+            const icon = $(`<a href='' class='bt-favorite' title='Add to Favorite' data-id='${shows.id}' data-title="${shows.name}" data-score="${shows.rate}" data-image="${shows.image}" data-overview="${shows.overview}">
+            <i class="fas fa-heart"></i></a>`);
+
+            itemDiv.append(icon);
+            innerDiv.append(itemDiv);
+
+
+           
+
             // const desc = $('<p></p>').text(books.description);
             // innerDiv.append(desc);
             // itemDiv.append(innerDiv);
             // const url = $('<a> Buy this book </a>').attr('href',books.url);
             // url.attr('target',"_blank")
             // itemDiv.append(url);
-            $('.container').append(innerDiv)
+            $('#tvimages').append(innerDiv)
         })
 
     }
@@ -89,23 +85,10 @@ function displayData(items) {
         displayData(value);
         showData = value;
     })
-    // .then(() => {
-    //    $('.fa-heart').click(e => {
-    //        let target = $(e.target);
-    //        let isFav = target.hasClass('favourite')
-    //     // let targetParent = target.closest('div');
-    //     let targetId = target.parent().attr('id');
-    //     const favBook = bookData.find(e => e.isbn === targetId);
-    //     const favIndex = favouriteBooks.findIndex(e => e.isbn === targetId);
-    //     if (!isFav) {
-    //         favouriteBooks.push(favBook);
-    //     } else {
-    //         favouriteBooks.splice(favIndex, 1)
-    //     }               
-    //     localStorage.setItem('favourite', JSON.stringify(favouriteBooks));
-    //     target.toggleClass('favourite');                   
-    //    })  
-    // })
+    .then(() => {
+
+        checkFavoriteTVShows();
+    })
     .catch(error => {
         displayError();
     })
@@ -122,7 +105,7 @@ function sanitizeData(response) {
 
         response.results.forEach((d) => {
             shows.push({
-                
+                id: d.id,
                 rate: d.vote_average,
                 name: d.name,
                 overview: d.overview,
