@@ -12,6 +12,9 @@ $(document).ready(function() {
         PAGE = 1;
         FILTER_YEAR = $('#FilterYear').val();
         SORT_BY = $('#SortBy').val();
+
+        console.log(SORT_BY);
+
         loadPopular();
     });
 });
@@ -51,20 +54,11 @@ function displayPopular(items) {
     $('#TVShowList').empty();
 
     (items).forEach((data) => {
-        let html = `
-            <div class="col-12 col-sm-4 col-md-3">
-                <a href="individual.html?id=${data.id}" >
-                    <div href="individual.html?id=${data.id}" class="card show-card mb-4" id="show-${data.id}" >
-                        <img src="${data.image}" class="card-img-top" alt="${data.title}">
-                        <a href='' class='bt-favorite' title='Add to Favorite' data-id='${data.id}' ><i class='fas fa-heart'></i></a>
-                        <div class='score'>${data.score}</div>
-                        <div class="card-body">
-                            <h5 class="card-title">${data.title}</h5>
-                            <!-- <p class="card-text">${data.overview}</p> -->
-                        </div>
-                    </div>
-                </a>
-            </div>`;
+        //Create a new card
+        //Necessary fields in the data object: [id, title, score, image, overview]
+        let html = createTVShowCard(data);
+
+        //Insert the card to the list
         $('#TVShowList').append(html)
     })
 }
@@ -76,7 +70,6 @@ function sanitizePopular(response) {
             id: d.id,
             title: (typeof d.name === 'undefined') ? 'Unknown' : d.name,
             image: (typeof d.poster_path === 'undefined' || d.poster_path == null) ? 'https://via.placeholder.com/500x750' : IMG_PATH + d.poster_path,
-
             overview: (typeof d.overview === 'undefined') ? 'No descriptions.' : d.overview,
             score: (typeof d.vote_average === 'undefined') ? 0 : d.vote_average,
         })
