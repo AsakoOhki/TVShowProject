@@ -48,7 +48,7 @@ function createTVShowCard(data) {
                         <div class="score">
                             <div class="bar" style="${scoreStyle}" >
                                 <div class="content" >
-                                    ${data.score*10}<span>%</span>
+                                    ${data.score}
                                 </div>
                             </div>
                         </div>

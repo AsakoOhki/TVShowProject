@@ -11,6 +11,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/discover.css">
 </head>
 
 <body>
@@ -19,18 +20,16 @@
     <main>
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h1 class="mt-5 mb-0">Discover Page</h1>
-                    <p class="lead">Discover a new TV Show.</p>
+                <div class="col-12 col-sm-6">
+                    <h1 class="my-4">Discover a new Tv Show</h1>
                 </div>
-                <div class="col-12 mb-4">
-                    <div class="card card-body">
-                        <form id="formSearch" class="form-inline">
-                            <div class="input-group mb-2 mr-sm-2">
+                <div class="col-12 col-sm-6">
+                    <div class="form-card card card-body my-2">
+                        <form id="formSearch">
+                            <div class="input-group mr-sm-2">
                                 <input name="year" id="FilterYear" type="number" min="1920" max="2020" class="form-control datepicker" placeholder="Year">
                             </div>
-
-                            <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group mr-sm-2">
                                 <select name="sort_by" id="SortBy" class="form-control">
                                     <option option="" selected>Sort by</option>
                                     <option disabled>-----------------------------</option>
@@ -44,7 +43,10 @@
                                     <option value="first_air_date.asc" >First air date ascending</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary mb-2">Discover</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                                <span class="d-none d-sm-inline ml-1">DISCOVER</span>
+                            </button>
                         </form>
                     </div>
                 </div>

@@ -1,0 +1,17 @@
+.form-card {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#formSearch {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#formSearch div:first-child {
+    width: 130px;
+}
+
+#formSearch button {
+    width: 170px;
+}

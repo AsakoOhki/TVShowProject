@@ -2,17 +2,10 @@ const API_URL = 'https://api.themoviedb.org/3/';
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
 
 $(document).ready(function() {
-    //Call Favorite list functions
     loadFavoriteList();
-
-    // Add click to remove item from list
-    $('.bt-favorite').click(function(e) {
-        e.preventDefault();
-        $(this).parent().parent().hide();
-    });
 });
 
-function loadFavoriteList() {
+async function loadFavoriteList() {
     let listDiv = $('#favoriteList');
 
     //Load the local storage values
@@ -35,6 +28,14 @@ function loadFavoriteList() {
 
     if ($(listDiv).html() == "") {
         $(listDiv).append('<div class="col-12 mt-5 text-center"><p>No favorite TV Shows found.</p></div>');
+    } else {
+        checkFavoriteTVShows();
+
+        // Add click to remove item from list
+        $('.bt-favorite').click(function(e) {
+            e.preventDefault();
+            $(this).parent().parent().hide();
+        });
     }
 
 }
