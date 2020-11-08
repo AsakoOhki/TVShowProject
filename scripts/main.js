@@ -17,6 +17,22 @@ function setActiveMenu(currentPage) {
 }
 
 function createTVShowCard(data) {
+    let scoreColor;
+
+    if (data.score < 2.5) {
+        scoreColor = "rgb(231, 76, 60)";
+    } else if (data.score < 5.0) {
+        scoreColor = "rgb(255, 143, 36)";
+    } else if (data.score < 7.5) {
+        scoreColor = "rgb(241, 196, 15)";
+    } else if (data.score < 9.0) {
+        scoreColor = "rgb(43, 218, 117)";
+    } else {
+        scoreColor = "rgb(191, 255, 144)";
+    }
+
+    let scoreStyle = `color:${scoreColor}; background:conic-gradient(${scoreColor} ${data.score*10}%, transparent 0 100%)`;
+
     let html = `
             <div class="col-12 col-sm-4 col-md-3">
                 <a href="individual.html?id=${data.id}" >
@@ -29,9 +45,12 @@ function createTVShowCard(data) {
                         <a href='' class='bt-favorite' title='Add to Favorite' data-id='${data.id}' data-title="${data.title}" data-score="${data.score}" data-image="${data.image}" data-overview="${data.overview}" >
                             <i class='fas fa-heart'></i>
                         </a>
-                        <div class='score'>${data.score}</div>
-                        <div class="card-body">
-                            <h5 class="card-title">${data.title}</h5>
+                        <div class="score">
+                            <div class="bar" style="${scoreStyle}" >
+                                <div class="content" >
+                                    ${data.score*10}<span>%</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </a>
