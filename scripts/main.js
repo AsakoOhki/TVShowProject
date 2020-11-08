@@ -65,6 +65,8 @@ function checkFavoriteTVShows() {
 
         if (localStorage.getItem(lsId)) {
             $(this).addClass("favorited");
+        } else {
+            $(this).removeClass("favorited");
         }
 
         // Add click event
