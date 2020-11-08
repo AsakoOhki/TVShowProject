@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@700&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +10,18 @@ body {
     display: flex;
     flex-direction: column;
     background: #000;
+    color: #fff;
+}
+
+nav,
+h1,
+h2,
+h3,
+h4,
+h5,
+button,
+footer {
+    font-family: 'Big Shoulders Inline Text', cursive;
 }
 
 body:after {
@@ -193,10 +206,5 @@ footer {
     border-radius: 100%;
     overflow: hidden;
     font-size: 12px;
-    letter-spacing: -1px;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-}
-
-.score span {
-    font-size: 7px;
 }
