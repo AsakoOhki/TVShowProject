@@ -1,25 +1,31 @@
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
 
 let PAGE = 1;
+let NUM_PAGES = 1;
 let FILTER_YEAR = "";
 let SORT_BY = "";
 
 $(document).ready(function() {
-    loadPopular();
+    loadDiscover();
 
     $('#formSearch').submit(function(e) {
         e.preventDefault();
+        $('#TVShowList').empty();
         PAGE = 1;
+        NUM_PAGES = 1;
         FILTER_YEAR = $('#FilterYear').val();
         SORT_BY = $('#SortBy').val();
+        loadDiscover();
+    });
 
-        console.log(SORT_BY);
-
-        loadPopular();
+    $('#loadMore').click(function(e) {
+        e.preventDefault();
+        PAGE = PAGE + 1;
+        loadDiscover();
     });
 });
 
-function loadPopular() {
+function loadDiscover() {
     let url = 'https://api.themoviedb.org/3/discover/tv?api_key=' + config.API_KEY;
 
     if (FILTER_YEAR != "") {
@@ -31,7 +37,6 @@ function loadPopular() {
     if (PAGE != "") {
         url += '&page=' + PAGE;
     }
-    //console.log(url);
 
     $.ajax({
         url: url,
@@ -40,18 +45,28 @@ function loadPopular() {
         beforeSend: startLoading,
         complete: stopLoading,
         success: function(res) {
-            displayPopular(sanitizePopular(res));
+            if (res.total_pages) {
+                NUM_PAGES = res.total_pages;
+            }
+            displayDiscover(sanitizeDiscover(res));
         },
         error: function(request) {
             displayError(request.error);
         }
     }).then(() => {
         checkFavoriteTVShows();
+
+        if (PAGE < NUM_PAGES) {
+            $('#loadMore').show();
+        } else {
+            $('#loadMore').hide();
+        }
     })
 }
 
-function displayPopular(items) {
-    $('#TVShowList').empty();
+function displayDiscover(items) {
+    //Insert a div to be used as anchor
+    $('#TVShowList').append(`<div id="startPage${PAGE}"></div>`);
 
     (items).forEach((data) => {
         //Create a new card
@@ -61,9 +76,14 @@ function displayPopular(items) {
         //Insert the card to the list
         $('#TVShowList').append(html)
     })
+
+    $('html, body').animate({
+        scrollTop: $("#startPage" + PAGE).offset().top - 150
+    }, 0);
+
 }
 
-function sanitizePopular(response) {
+function sanitizeDiscover(response) {
     let data = [];
     response.results.forEach((d) => {
         data.push({
