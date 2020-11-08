@@ -15,3 +15,9 @@
 #formSearch button {
     width: 170px;
 }
+
+@media screen and (max-width: 575px) {
+    #formSearch button {
+        width: 50px;
+    }
+}

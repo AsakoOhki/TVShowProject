@@ -71,6 +71,12 @@ body:after {
     padding: 10px 10px 10px 10px;
 }
 
+@media screen and (max-width: 575px) {
+    .inner-item {
+        width: 50%;
+    }
+}
+
 .inner-item:hover .overlay {
     opacity: 1;
 }
@@ -89,6 +95,7 @@ body:after {
 header {
     min-height: 55px;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
 }
 
 @media screen and (max-width: 575px) {

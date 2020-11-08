@@ -34,7 +34,7 @@ function createTVShowCard(data) {
     let scoreStyle = `color:${scoreColor}; background:conic-gradient(${scoreColor} ${data.score*10}%, transparent 0 100%)`;
 
     let html = `
-            <div class="col-12 col-sm-4 col-md-3">
+            <div class="col-6 col-sm-4 col-md-3">
                 <a href="individual.html?id=${data.id}" >
                     <div href="individual.html?id=${data.id}" class="card show-card mb-4" id="show-${data.id}" >
                         <img src="${data.image}" class="card-img-top" alt="${data.title}">

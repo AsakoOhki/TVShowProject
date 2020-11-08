@@ -30,7 +30,7 @@ $(function() {
         }
 
         items.forEach((shows) => {
-            const innerDiv = $(`<a class="inner-item" href="individual.html?id=${shows.id}"></div>`);
+            const innerDiv = $(`<div class="inner-item" href="individual.html?id=${shows.id}"></div>`);
 
             const img = $(`<img alt="${shows.title}" >`).attr('src', shows.image)
             innerDiv.append(img);
